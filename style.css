@@ -100,13 +100,13 @@ main{
     gap: 3rem;
 }
 
-.pizza-nombre, .pizza-precio{
+.info_card p{
     color: var(--fire);
     font-size: 20px;
     font-weight: 700;
 }
 
-.pizza-nombre span, .pizza-precio span {
+.pizza-nombre , .pizza-precio{
     color: var(--text-gray);
 }
 
