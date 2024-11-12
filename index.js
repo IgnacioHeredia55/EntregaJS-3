@@ -6,7 +6,7 @@ const pizzas = [
     nombre: "pizza de Muzzarella",
     precio: 500,
     ingredientes: ["Muzzarella", "Tomate", "Aceitunas"],
-    //imagen: "./img/muzzarella.png",
+    imagen: "./img/muzzarella.png",
   },
 
   {
@@ -56,9 +56,11 @@ const pizzaImagen = document.querySelector('.pizza-img')
 // const pizzaNombre = document.querySelector('.pizza-nombre')
 // const pizzaPrecio = document.querySelector('.pizza-precio')
 const infoCard = document.querySelector('.info_card')
-const divError = document.getElementById("error")
+const errorMsg = document.getElementById("error-p")
 const button = document.getElementById("button")
 // ====================== Funciones auxiliares ======================
+
+console.dir(errorMsg)
 
 const renderPizza = (input) => {
   i = input.value - 1;
@@ -94,7 +96,7 @@ const validateInput = (input) => {
 }
 
 const error = () => {
-  divError.classList.remove("hidden")
+  errorMsg.classList.remove("hidden")
   infoCard.classList.add("hidden")
   pizzaImagen.classList.add("hidden")
   card.classList.add("card-error")
