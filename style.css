@@ -76,7 +76,22 @@ main{
     align-items: center;
 }
 
+.card-error{
+    height: 607px;
+    width: 535px;
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 15px;
+    border-radius: 1rem;
+    background-color: var(--secondary);
+}
+
 .card{
+    height: 607px;
+    width: 535px;
     border: 3px solid #ccc;
     display: flex;
     flex-direction: column;
@@ -162,6 +177,22 @@ main{
     width: 500px;
     height: 400px;
 }
+
+/*==================Clases js===================*/
+
+.hidden{
+    visibility: hidden;
+}
+
+.error{
+    position: absolute;
+    top: 500px;
+    font-size: 24px;
+    font-weight: 700;
+    color: red;
+}
+
+
 
 
 /*================= footer  ====================*/

@@ -6,7 +6,7 @@ const pizzas = [
     nombre: "pizza de Muzzarella",
     precio: 500,
     ingredientes: ["Muzzarella", "Tomate", "Aceitunas"],
-    imagen: "./img/muzzarella.png",
+    //imagen: "./img/muzzarella.png",
   },
 
   {
@@ -53,25 +53,27 @@ const inputForm = document.querySelector('.pizza-form')
 const input = document.querySelector('.inputN')
 const card = document.querySelector('.card')
 const pizzaImagen = document.querySelector('.pizza-img')
-const pizzaNombre = document.querySelector('.pizza-nombre')
-const pizzaPrecio = document.querySelector('.pizza-precio')
+// const pizzaNombre = document.querySelector('.pizza-nombre')
+// const pizzaPrecio = document.querySelector('.pizza-precio')
+const infoCard = document.querySelector('.info_card')
+const divError = document.getElementById("error")
+const button = document.getElementById("button")
 // ====================== Funciones auxiliares ======================
 
 const renderPizza = (input) => {
-  i = input.value;
+  i = input.value - 1;
   card.innerHTML = `
     <img src=${pizzas[i].imagen} alt="pizza-img" class="pizza-img">
     <div class="info_card">
         <p>Nombre: <span class="pizza-nombre">${pizzas[i].nombre}</span></p>
-       <p>Precio: <span class="pizza-precio">${pizzas[i].precio}</span></p>
+       <p>Precio: <span class="pizza-precio">S${pizzas[i].precio}</span></p>
     </div>
   ` 
-  // pizzaNombre.innerText = pizzas[i].nombre;
-  // pizzaPrecio.innerText = pizzas[i].precio;
-  // pizzaImagen.src = pizzas[i].src
+
 }
 
 //manejador del boton submit
+
 let submitHandler = (event) => {
   event.preventDefault();
   if(validateInput(input)){
@@ -81,31 +83,24 @@ let submitHandler = (event) => {
   console.log(`${input.value}`)
 }
 
+
 const validateInput = (input) => {
   let flag = true
   if(! input.value.length){
-    console.log("Tenes que ingresar un numero")
+    error()
     return
   }
   return flag;
 }
 
-// }
-/*id: 3,
-    nombre: "pizza 4 Quesos",
-    precio: 1380,
-    imagen: "./img/4quesos.png",
-  }*/ 
+const error = () => {
+  divError.classList.remove("hidden")
+  infoCard.classList.add("hidden")
+  pizzaImagen.classList.add("hidden")
+  card.classList.add("card-error")
+  card.classList.remove("card")
 
-// ====================== Validaciones ======================
-
-// let pizzaIsValid = (input) => {
-//   if (!input.value) {
-//     console.log("Tenes que ingresar un numero!");
-//     return
-//   }
-//   console.log(`${pizzas[input.value].nombre}`)
-// }
+}
 
 // ====================== Funcion inicializadora ======================
 
