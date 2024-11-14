@@ -53,25 +53,47 @@ const inputForm = document.querySelector('.pizza-form')
 const input = document.querySelector('.inputN')
 const card = document.querySelector('.card')
 const pizzaImagen = document.querySelector('.pizza-img')
-// const pizzaNombre = document.querySelector('.pizza-nombre')
-// const pizzaPrecio = document.querySelector('.pizza-precio')
 const infoCard = document.querySelector('.info_card')
 const errorMsg = document.getElementById("error-p")
 const button = document.getElementById("button")
+const infoMSG = document.getElementById("info-msg")
 // ====================== Funciones auxiliares ======================
 
-console.dir(errorMsg)
+
+
+let saveToLocalStorage = (input) => {
+  localStorage.setItem('pizza', JSON.stringify(createCardTemplate(input)))
+}
 
 const renderPizza = (input) => {
+  saveToLocalStorage(input)
+  card.innerHTML = createCardTemplate(input)
+  serchIsSucces()
+}
+
+const createCardTemplate = (input) => {
   i = input.value - 1;
-  card.innerHTML = `
+  return `
     <img src=${pizzas[i].imagen} alt="pizza-img" class="pizza-img">
     <div class="info_card">
         <p>Nombre: <span class="pizza-nombre">${pizzas[i].nombre}</span></p>
-       <p>Precio: <span class="pizza-precio">S${pizzas[i].precio}</span></p>
+       <p>Precio: <span class="pizza-precio">$${pizzas[i].precio}</span></p>
     </div>
-  ` 
+  `
+}
 
+const loadPizzaFromLocalStorage = () => {
+  const savedPizza = localStorage.getItem('pizza');
+  if (savedPizza) {
+    const pizzaData = JSON.parse(savedPizza);
+    card.innerHTML = pizzaData; // Muestra la pizza guardada
+  }
+}
+
+const createErrorCardTemplate = () => {
+  card.classList.add("card-error")
+  card.classList.remove("card")
+  card.innerHTML = '<p id="error-p" class="error">!ERROR¡ Tenes que ingresar un numero!</p>';
 }
 
 //manejador del boton submit
@@ -80,35 +102,35 @@ let submitHandler = (event) => {
   event.preventDefault();
   if(validateInput(input)){
     renderPizza(input)
-    console.log("todo en orden")
   }
-  console.log(`${input.value}`)
+  else{
+    createErrorCardTemplate();
+  }
 }
 
 
 const validateInput = (input) => {
   let flag = true
-  if(! input.value.length){
-    error()
+  if(!input.value.length){
     return
   }
   return flag;
 }
 
-const error = () => {
-  errorMsg.classList.remove("hidden")
-  infoCard.classList.add("hidden")
-  pizzaImagen.classList.add("hidden")
-  card.classList.add("card-error")
-  card.classList.remove("card")
 
+const serchIsSucces = () => {
+  card.classList.remove("card-error")
+  card.classList.add("card")
+  infoMSG.classList.add("hidden")
 }
+
+
 
 // ====================== Funcion inicializadora ======================
 
 const init = () => {
-  //Submit Handler
-    inputForm.addEventListener('submit', submitHandler); 
+  window.addEventListener('DOMContentLoaded', loadPizzaFromLocalStorage)
+  inputForm.addEventListener('submit', submitHandler); 
 }
 
 init()

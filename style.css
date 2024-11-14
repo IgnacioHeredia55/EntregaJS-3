@@ -102,7 +102,7 @@ main{
     background-color: var(--secondary);
 }
 
-.card img{
+.pizza-img{
     border-radius: 1rem;
 }
 
@@ -181,6 +181,7 @@ main{
 /*==================Clases js===================*/
 
 .hidden{
+    display: none;
     visibility: hidden;
 }
 
@@ -190,6 +191,15 @@ main{
     font-size: 24px;
     font-weight: 700;
     color: red;
+}
+
+.info-msg{
+    position: absolute;
+    top: 450px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--fire);
+    text-align: center;
 }
 
 
