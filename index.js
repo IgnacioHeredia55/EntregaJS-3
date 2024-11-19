@@ -48,7 +48,8 @@ const pizzas = [
   },
 ];
 
-// ====================== Eleumentos recuperados ======================
+// ================= Eleumentos recuperados del DOM =================
+
 const inputForm = document.querySelector('.pizza-form')
 const input = document.querySelector('.inputN')
 const card = document.querySelector('.card')
@@ -57,19 +58,22 @@ const infoCard = document.querySelector('.info_card')
 const errorMsg = document.getElementById("error-p")
 const button = document.getElementById("button")
 const infoMSG = document.getElementById("info-msg")
+
 // ====================== Funciones auxiliares ======================
-
-
 
 let saveToLocalStorage = (input) => {
   localStorage.setItem('pizza', JSON.stringify(createCardTemplate(input)))
 }
+
+//Funcion que va a mostrar la card en el display
 
 const renderPizza = (input) => {
   saveToLocalStorage(input)
   card.innerHTML = createCardTemplate(input)
   serchIsSucces()
 }
+
+//Funcion creadora de la card
 
 const createCardTemplate = (input) => {
   i = input.value - 1;
@@ -108,6 +112,7 @@ let submitHandler = (event) => {
   }
 }
 
+//Validacion del input que manda el usuario 
 
 const validateInput = (input) => {
   let flag = true
@@ -117,14 +122,11 @@ const validateInput = (input) => {
   return flag;
 }
 
-
 const serchIsSucces = () => {
   card.classList.remove("card-error")
   card.classList.add("card")
   infoMSG.classList.add("hidden")
 }
-
-
 
 // ====================== Funcion inicializadora ======================
 
